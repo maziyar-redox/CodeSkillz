@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 /*
@@ -53,45 +52,11 @@ import (
 */
 
 func isValid(s string) bool {
-    if len(s) % 2 != 0 {
-		return false
-	}
-	hrMap := map[string]int{
-		"(": 1,
-		")": 2,
-		"{": 5,
-		"}": 6,
-		"[": 9,
-		"]": 10,
-	}
-	prMap := map[string]string{
-		"(": ")",
-		")": "(",
-		"{": "}",
-		"}": "{",
-		"[": "]",
-		"]": "[",
-	}
-	tmpStr := s
-	for i := 0; i < len(tmpStr) - 1; i++ {
-		val1, _ := hrMap[string(tmpStr[i])]
-		val2, _ := hrMap[string(tmpStr[i + 1])]
-		if val1 + 1 == val2 {
-			i = i + 1
-			continue
-		}
-		for j := i; j < len(tmpStr); j++ {
-			val3, _ := prMap[string(tmpStr[i])]
-			lastIndex := strings.LastIndex(tmpStr, val3)
-			tmpStr = tmpStr[:indexToRemove] + tmpStr[:lastIndex - 1]
-		}
-		return false
-	}
 	return true
 }
 
 func main() {
-	exampleString := "(){}[]"
+	exampleString := "(){}[]}"
 	res := isValid(exampleString)
 	fmt.Println(res)
 }
